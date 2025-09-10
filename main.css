@@ -7,7 +7,7 @@
 
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 20;
+  /* line-height: 20rem; */
   color: lightgrey;
   background-color: #f5f5f5;
   padding: 20px;
@@ -22,6 +22,8 @@ header {
   margin-bottom: 2rem;
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+
 }
 
 header h1 {
@@ -59,7 +61,7 @@ section h2 {
 }
 
 section p {
-  color: #666;
+  color: #ffffff;
   margin-bottom: 1rem;
   font-size: 1rem;
 }
