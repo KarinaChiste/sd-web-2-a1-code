@@ -53,13 +53,80 @@ function AgeList(characters, age){
   let ageFilterListOutput = "";
   for (let i = 0; i<characters.length; i++){
     if(characters[i].age <age){
-      ageFilterListOutput+= `<li>${users[i].name}</li>`
+      ageFilterListOutput+= `<li>${characters[i].name}</li>`
     }
     
   }
   return ageFilterListOutput
 }
 ageFilterList.innerHTML = AgeList(users,60);
+
 // 5. Add error handling to your functions that will log an error message using console.error() if any object doesn't have a "name" property. Display any error messages in the div with id "error-messages"
+let errorMessages = document.getElementById("error-messages")
+let errorHandlingList = document.getElementById("error-handling-list")
+
+const brokenUsers = [
+  { id: 1, username: "Luke Skywalker", age: 23 },
+  { id: 2, username: "Darth Vader", age: 45 },
+  { id: 3, username: "Princess Leia", age: 23 },
+  { id: 4, username: "Obi-Wan Kenobi", age: 57 },
+  { id: 5, username: "Yoda", age: 900 },
+  { id: 6, username: "Han Solo", age: 32 },
+  { id: 7, username: "Chewbacca", age: 234 },
+  { id: 8, username: "R2-D2", age: 33 },
+  { id: 9, username: "C-3PO", age: 112 },
+  { id: 10, username: "Padmé Amidala", age: 27 },
+];
+
+function ErrorHandlingCharacterList(characters){
+  
+  try {
+    let errorCharacterListOutput ="";
+
+    for (let i = 0; i<characters.length; i++){
+      
+      if(characters[i].name == undefined){
+        
+        
+        throw new Error ("Error message!");
+      }
+      errorCharacterListOutput+= `<li>${characters[i].name}</li>`;
+      
+    }
+    errorMessages.style.display = 'none';
+    return errorCharacterListOutput;
+  } catch (error) {
+    console.log(error.message)
+    return error.message
+  }
+ 
+}
+errorHandlingList.innerHTML = ErrorHandlingCharacterList(users)
+
+function ErrorHandlingAgeList(characters, age){
+ 
+  try {
+    let errorAgeFilterListOutput = "";
+    for (let i = 0; i<characters.length; i++){
+      if(characters[i].name == undefined){
+        
+        
+        throw new Error ("Error message!");
+      }
+      if(characters[i].age <age){
+        errorAgeFilterListOutput+= `<li>${characters[i].name}</li>`
+      }
+      
+    }
+    return errorAgeFilterListOutput
+  } catch (error) {
+    console.log(error.message)
+    return error.message
+  }
+}
+
 
 // 6. Test your error handling by creating a second array that's intentionally broken (missing name properties) and passing it to your functions. Verify that your error handling works correctly and displays errors in the div with id "broken-array-errors"
+
+let brokenArrayErrors = document.getElementById("broken-array-errors")
+brokenArrayErrors.innerHTML = ErrorHandlingCharacterList(brokenUsers)
